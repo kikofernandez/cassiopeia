@@ -9,4 +9,4 @@
 
 ;(immutant.web/start (wrap-resource handler "public"))
 ;(immutant.web/start handler/app)
-(web/start ring-handler)
+(web/start app)
