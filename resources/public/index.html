@@ -122,52 +122,37 @@
     <div class="brand-text"><strong>Open</strong>Shift</div>
   </a>
   <h1>
-    Welcome to OpenShift, JBossAS7 Cartridge
+    Welcome to Immutant on OpenShift
   </h1>
   <p>
-    Place your application here
+    In order to commit to your new project, go to your project's git repo  (created with the rhc app create command) directory.
   </p>
   <p>
-    In order to commit to your new project, go to your projects git repo  (created with the rhc app create command) directory.
-  </p>
-  <p>
-    For example, if you named your application myfirstapp (by passing in -a myfirstapp to the rhc app create command),
-      you would find the contents of this app located under myfirstapp/src/main/webapp. You can edit that and push your
-      changes from the myfirstapp directory by running:
+    For example, if you named your application yourapp (by passing in
+    -a yourapp to the rhc app create command), your Clojure source
+    code should reside beneath yourapp/src, runtime resources beneath
+    yourapp/resources and your dependencies, among other things,
+    specified in yourapp/project.clj. A deployment descriptor in which
+    you can set various runtime options for yourapp can be found in
+    yourapp/deployments/your-clojure-application.clj. You deploy
+    changes to your app simply by pushing them from the yourapp
+    directory:
   </p>
   <pre>
-    git commit -a -m 'Some commit message'
     git push
   </pre>
-  <p>
-    Then reload this page.
-  </p>
-  <p>See the myfirstapp/README file for more information on the options for deploying applications.</p>
-
-
-<h2>Sample Applications</h2>
-<p>To get started you can either modify the default war or try one of these samples:
-  <ul>
-    <li><a href="https://github.com/openshift/kitchensink-example">https://github.com/openshift/kitchensink-example</a> this quickstart showcases some of the exciting Java EE6 features available on JBoss AS 7.1.</li>
-    <li><a href="https://github.com/openshift/kitchensink-html5-mobile-example">https://github.com/openshift/kitchensink-html5-mobile-example</a> based on kitchensink (above), but with an HTML5 client that displays great on a PC or mobile device.</li>
-    <li><a href="https://github.com/openshift/tweetstream-example">https://github.com/openshift/tweetstream-example</a> a TweetStream example</li>
-  </ul>
-  
-  <h4>Example usage:</h4>
-  <pre>
-  cd kitchensink
-  git remote add upstream -m master git://github.com/openshift/kitchensink-example.git
-  git pull -s recursive -X theirs upstream master
-  </pre>
-</p>
-
-<h2>Debugging</h2>
-<p>View debugging information about the server environment including memory pools by loading this JSP page: <a href="snoop.jsp">Debug</a></p>
+  <p>See the yourapp/README file for more information on the options
+  for deploying applications, not all of which are relevant for
+  Clojure apps.</p>
 
   <h2>
     What's next?
   </h2>
   <ul>
+    <li>
+      Maybe check out the Immutant news, docs, and tutorials
+      at <a href="http://immutant.org">http://immutant.org</a>, or
+    </li>
     <li>
       Why not visit us at <a href="http://openshift.redhat.com">http://openshift.redhat.com</a>, or
     </li>
@@ -175,7 +160,8 @@
       You could get help in the <a href="http://www.redhat.com/openshift">OpenShift forums</a>, or
     </li>
     <li>
-      You're welcome to come chat with us in our IRC channel at #openshift on freenode.net
+      You're welcome to come chat with us in our IRC channel at
+      #openshift or #immutant on freenode.net
     </li>
   </ul>
 </body>
