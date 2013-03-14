@@ -6,4 +6,5 @@
   :dependencies [[org.clojure/clojure "1.4.0"]
                  [compojure "1.1.5"]
                  [hiccup "1.0.2"]]
+  :immutant {:context-path "/"}
   :plugins [[codox "0.6.4"]])
