@@ -29,7 +29,7 @@
      [:div {:class "large-12 columns"}
       [:ul {:class "breadcrumbs"}
        [:li [:a {:href "/home"} "Home"]]
-       [:li [:a {:href "/features"} "Features"]]
+       [:li [:a {:href "/features"} "Características"]]
        [:li [:a {:href "/waiting-list"} "Waiting list"]]]]]))
 
 
