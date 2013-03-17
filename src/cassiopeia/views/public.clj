@@ -6,7 +6,7 @@
 
 (def feature-description
   (hpage/html5 [:div 
-                [:h1 "Welcome to the most advance survey creator application"]]
+                [:h1 "Bienvenido a la primera aplicación de retail"]]
 
                ; slider
                [:ul {:data-orbit ""}
@@ -38,12 +38,60 @@
 
 (def feature-showcase
   (hpage/html5 [:div {:class "row"}
-                [:div {:class "large-10 large-offset-1"} 
-                 [:h1 "Features"]
-                 [:div {:class "large-7"}
-                  [:h1 "asdasda asdasdasd asdas dasd asd asd"]]
-                 [:div {:class "large-7 large-offset-5"}
-                  [:h1 "asdasda asd sdsad sdsd asdas dasd asd asd"]]]]))
+                [:div {:class "large-11 large-offset-1"} 
+                 [:h1 "Características"]
+                 [:div {:class "large-11 columns"}
+                  
+                  ;; First feature
+                  [:div {:class "row"}
+                   [:div {:class "large-8 columns"}
+                    [:h3 "Run everywhere"]]]
+                  [:div {:class "row"}
+                   [:div {:class "large-7 columns"}
+;                    [:h2 "Run everywhere"]
+                    [:p "Cassiopeia está diseñada para funcionar bajo cualquier plataforma ofreciendo
+                   el máximo rendimiento posible en cada una de ellas. Actualmente soportamos
+                   Android y iOs."]]
+                   [:div {:class "large-5 columns"}
+                    (element/image "/img/Devices.png")]]
+                  
+;                  [:div {:class "row"}
+;                   [:div {:class "large-7 large-offset-5 columns"}
+;                    [:h2 "We love the cloud"]]]
+                  ;; Second feature
+                  [:div {:class "row"}
+                   [:div {:class "large-5 columns"}
+                    ;(element/image "img/Cloud.png")]
+                    (element/image "img/small-cloud-csci.png")]
+                   [:div {:class "large-7 columns"}
+                    [:h3 "We love the cloud"]
+                    [:p "Cassiopeia funciona en la nube, de manera que siempre tendrá
+                     a su disposición los datos sin necesidad de emplear complicadas instalaciones.
+                     Los datos son privados y le pertenecen a usted, nosotros sólo nos 
+                     encargamos de custodiarlos."]]]
+                  
+                  ;; Third feature
+                  [:div {:class "row"}
+                   [:div {:class "large-7 columns"}
+                    [:h3 "Offline store"]
+                    [:p "Utilice la aplicación estando offline y sincronice de forma
+                      automática cuando tenga conexión. La sincronización es ahora un
+                      juego de niños."]]
+                   [:div {:class "large-5 columns"}
+                    (element/image "/img/online_to_offline_connection.png")]]]
+                 ;[:div {:class "large-7 large-offset-5"}
+                 ; [:h2 "We love the Cloud"]
+                 ; [:p "La aplicación funciona en la nube, de manera que siempre tendrá
+                 ;  a su disposición los datos sin necesidad de emplear complicadas instalaciones.
+                 ;  Los datos son privados y le pertenecen a usted, nosotros sólo nos 
+                 ;  encargamos de custodiarlos."]]
+                 
+                 ;[:div {:class "large-7"}
+                 ; [:h2 "Offline store"]
+                 ; [:p "Utilice la aplicación estando offline y sincronice de forma
+                 ;  automática cuando tenga conexión. La sincronización es ahora un
+                 ;  juego de niños."]]
+                 ]]))
 
 (def waiting-list-view
   (hpage/html5 [:div {:class "row"}
