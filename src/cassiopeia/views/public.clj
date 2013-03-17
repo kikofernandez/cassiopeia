@@ -6,7 +6,7 @@
 
 (def feature-description
   (hpage/html5 [:div 
-                [:h1 "Bienvenido a la primera aplicación de retail"]]
+                [:h1 "We enlighten your business"]]
 
                ; slider
                [:ul {:data-orbit ""}
