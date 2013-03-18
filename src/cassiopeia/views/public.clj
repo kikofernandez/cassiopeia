@@ -39,18 +39,18 @@
                [:div {:class "row"}
                 [:div {:class "large-4 columns"}
                  [:div {:class "panel"}
-                  "Welcome to HTML5, welcome to the future"
-                 (element/image {:height "100px"} "/img/html5-badge.png")]]
+                  [:p "Construido usando las últimas tecnologías y frameworks"]
+                 (element/image {:height "100px"} "/img/technology.png")]]
                 
                 [:div {:class "large-4 columns"} 
                  [:div {:class "panel"}
-                   "Build with the latest technology. Build one, deploy anywhere"
-                   (element/image {:height "100px"} "/img/sencha-touch-2-devices-400.jpg")]]
+                   [:p "Funciona en la nube, con modo offline y sincroniza cuando quieras"]
+                   (element/image {:height "100px"} "/img/small-cloud.png")]]
                 
                 [:div {:class "large-4 columns"} 
                  [:div {:class "panel"}
-                   "Proud of using Sencha Framework"
-                   (element/image {:height "100px"} "/img/sencha-tools-250.png")]]]))
+                   [:p "Para ofrecerle una mayor flexibilidad utilizamos base de datos NoSQL"]
+                   (element/image {:height "100px"} "/img/mongodb.jpg")]]]))
 
 (def feature-showcase
   (hpage/html5 [:div {:class "row"}
@@ -107,19 +107,22 @@
 (def waiting-list-view
   (hpage/html5 [:div {:class "row"}
                 [:div {:class "large-10 large-offset-1"}
-                 [:h1 "Waiting List"]
+                 [:h1 "Lista de espera"]
                  [:div {:class "panel"} (element/image "/img/sencha-touch-2-devices-400.jpg")
                   [:div {:class "large-7 panel"} 
-                   (form/label "email-label" "Subscribe to the waiting list")
-                   (form/email-field "email" "Enter your e-mail")]]]]))
+                   (form/label "email-label" "Pide tú invitación aquí:")
+                   [:input {:type "email" :name "email-invitation"
+                            :placeholder "johndoe@cassiopeia.com"}]
+                   ;(form/email-field "email" "johndoe@cassiopeia.com")
+                   ]]]]))
 
 (defn index [& content]
     (apply layout/common (into (into [] content)
                                feature-description)))
 
 (defn features []
-  (apply layout/common (-> ["Company name - Features"] (into feature-showcase))))
+  (apply layout/common (-> ["Cassiopeia - Características"] (into feature-showcase))))
 ;    (apply layout/common (into ["Company name - Features"] feature-showcase)))
 
 (defn waiting-list []
-  (apply layout/common (into ["Company name - Waiting list"] waiting-list-view)))
+  (apply layout/common (into ["Cassiopeia - Lista de espera"] waiting-list-view)))

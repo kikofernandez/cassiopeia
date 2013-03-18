@@ -30,7 +30,7 @@
       [:ul {:class "breadcrumbs"}
        [:li [:a {:href "/home"} "Home"]]
        [:li [:a {:href "/features"} "Características"]]
-       [:li [:a {:href "/waiting-list"} "Waiting list"]]]]]))
+       [:li [:a {:href "/waiting-list"} "Invitación"]]]]]))
 
 
 (defn container
