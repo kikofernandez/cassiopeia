@@ -10,4 +10,5 @@
 (defroutes routes
   (compoj/GET "/" [] ("hola"))
   (compoj/GET "/hello" [] ("hola"))
-  (route/not-found "Not Found"))
+  ;(route/not-found "Not Found")
+  )
