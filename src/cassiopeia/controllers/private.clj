@@ -3,10 +3,14 @@
   (:require [ring.util.response :as response]
             [hiccup.core :as hcore]
             [hiccup.page :as hpage]
-            [hiccup.form :as form]))
+            [hiccup.form :as form]
+            [sandbar.stateful-session :as session]))
 
 (defn index [id]
-  (hpage/html5 [:p "Hola there: " id]))
+  (let [counter (+ 1 (session/session-get :counter 0))]
+    (do
+      (session/session-put! :counter counter)
+      (hpage/html5 [:p "Hi there: " id " end " (session/session-get :counter) " .s"]))))
 
 (defroutes controller-routes
   (GET "/welcome/:id" [id] (index id)))
