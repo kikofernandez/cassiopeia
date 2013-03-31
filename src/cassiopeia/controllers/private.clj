@@ -4,13 +4,14 @@
             [hiccup.core :as hcore]
             [hiccup.page :as hpage]
             [hiccup.form :as form]
+            [cassiopeia.models.private :as models]
             [sandbar.stateful-session :as session]))
 
 (defn index [id]
-  (let [counter (+ 1 (session/session-get :counter 0))]
+  (let [user (session/session-get :user (models/user-model {:name "Kiko"}))]
     (do
-      (session/session-put! :counter counter)
-      (hpage/html5 [:p "Hi there: " id " end " (session/session-get :counter) " .s"]))))
+      ;(session/session-put! :counter counter)
+      (hpage/html5 [:p "Hi there: " id " end " (@user :name) " - " (@user :account)]))))
 
 (defroutes controller-routes
   (GET "/welcome/:id" [id] (index id)))
