@@ -5,15 +5,24 @@
             [hiccup.page :as hpage]
             [hiccup.form :as form]
             [cassiopeia.models.private :as models]
-            [sandbar.stateful-session :as session]))
+            [sandbar.stateful-session :as session]
+            [cassiopeia.views.private :as views]))
 
-(defn index [id]
-  (let [user (session/session-get :user (models/user-model {:name "Kiko"}))]
-    (do
-      ;(session/session-put! :counter counter)
-      (hpage/html5 [:p "Hi there: " id " end " (@user :name) " - " (@user :account)]))))
+;(defn index [id]
+;  (let [user (session/session-get :user (models/user-model {:name "Kiko"}))]
+;    (do
+;      ;(session/session-put! :counter counter)
+;      (hpage/html5 [:p "Hi there: " id " end " (@user :name) " - " (@user :account)]))))
+
+(defn index
+  ([] (let [user (session/session-get :user (models/user-model {:name "Kiko"}))]
+          (views/welcome user)))
+  ([id] (let [user (session/session-get :user (models/user-model {:name "Kiko"}))]
+          (views/welcome user))))
+
 
 (defroutes controller-routes
+  (GET "/welcome/" [] (index))
   (GET "/welcome/:id" [id] (index id)))
 
 ;; We define the routes for the meta-models 
