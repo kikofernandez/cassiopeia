@@ -1,9 +1,6 @@
 (ns cassiopeia.controllers.public
   (:use [compojure.core :only (defroutes GET POST)])
-  (:require [ring.util.response :as response]
-            [hiccup.core :as hcore]
-            [hiccup.page :as hpage]
-            [hiccup.form :as form]
+  (:require [cassiopeia.controllers.db :as db]
             [cassiopeia.views.public :as view]
             [cassiopeia.models.public :as mpublic]
             ))
@@ -17,7 +14,10 @@
   ;; meaning, it will create a new list, ending up (["text" "..."]).
   ;; In order to de-structure this, we use the apply method over the
   ;; fn that accepts and creates the new structure.
-  (apply view/index (mpublic/introduction)))
+  db/connect
+  (apply view/index (mpublic/introduction))
+  ;db/disconnect
+  )
 
 (defn features
   "Display the features."

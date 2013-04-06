@@ -1,10 +1,6 @@
 (ns cassiopeia.controllers.private
   (:use [compojure.core :only (defroutes GET POST context)])
-  (:require [ring.util.response :as response]
-            [hiccup.core :as hcore]
-            [hiccup.page :as hpage]
-            [hiccup.form :as form]
-            [cassiopeia.models.private :as models]
+  (:require [cassiopeia.models.private :as models]
             [sandbar.stateful-session :as session]
             [cassiopeia.views.private :as views]))
 

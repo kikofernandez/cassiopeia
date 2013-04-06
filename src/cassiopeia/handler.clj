@@ -4,8 +4,7 @@
             [compojure.route :as route]
             ;[ring.middleware.json :as middleware]
             [ring.middleware.params :as params]
-            [hiccup.page :as hpage]
-            [hiccup.core :as hcore]
+            [cassiopeia.controllers.db :as db]
             [cassiopeia.controllers.public :as public]
             [cassiopeia.controllers.private :as private]
             ;[cassiopeia.controllers.rest :as rs]
@@ -15,7 +14,7 @@
 (defn- stateful-route
   "Calls the routeFn adding stateful session."
   [routeFn]
-  (-> routeFn
+   (-> routeFn
       session/wrap-stateful-session 
       params/wrap-params))
 

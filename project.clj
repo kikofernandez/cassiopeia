@@ -7,6 +7,7 @@
                  [compojure "1.1.5"]
                  ;[ring/ring-json "0.2.0"]
                  [hiccup "1.0.2"]
+                 ;[com.novemberain/monger "1.4.2"]
                  [com.novemberain/monger "1.4.2"]
                  ;[cheshire "5.0.2"]
                  [sandbar/sandbar "0.4.0-SNAPSHOT"]
