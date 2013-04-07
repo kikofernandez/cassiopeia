@@ -30,6 +30,14 @@
            :tags ["documents" "default"]} 
           attributes))
 
+(defn question
+  "Question default model"
+  []
+  {:first_name ""
+   :last_name ""
+   :title ""
+   :qid ""
+   :answers {}})
 
 ;(defn item
 ;  [namee text & solutions]
