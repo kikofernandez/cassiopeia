@@ -3,9 +3,11 @@
   (:require [cassiopeia.controllers.db :as db]
             [cassiopeia.views.public :as view]
             [cassiopeia.models.public :as mpublic]
+            [ring.util.response :as response]
+            [sandbar.stateful-session :as session]
             ))
 
-(defn index 
+(defn- index 
   "We create the welcome / index page with this fn."
   []
   ;; we use apply in order to de-structure the content that
@@ -19,18 +21,30 @@
   ;db/disconnect
   )
 
-(defn features
+(defn- features
   "Display the features."
   []
   (view/features))
 
-(defn waiting-list
+(defn- waiting-list
   "Display a form for the waiting list"
   []
   (view/waiting-list))
 
+(defn- login
+  []
+  (view/login-view))
+
+(defn- login-validate
+  [{:keys [email password]}]
+  (when-let [user (first (db/login-user email password))]
+    (session/session-put! :user user)
+    (response/redirect "/user/welcome/")))
+
 (defroutes routes
   (GET "/" [] (index))
   (GET "/home" [] (index))
+  (GET "/login" [] (login))
+  (POST "/login" [& params] (login-validate params))
   (GET "/features" [] (features))
   (GET "/waiting-list" [] (waiting-list)))

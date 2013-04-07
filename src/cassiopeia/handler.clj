@@ -21,7 +21,9 @@
 ;; Application routes, just simple website
 (defroutes app-routes
   public/routes
-  (stateful-route private/routes) ; stateful route, we have an user.
+  private/routes
+  ;(stateful-route public/routes)
+  ;(stateful-route private/routes) ; stateful route, we have an user.
   (route/resources "/")
   (route/not-found "Not Found"))
 
@@ -35,7 +37,8 @@
 
 (def app
 ;  (handler/api api-routes))
-  (handler/site app-routes) ; web
+  ;(handler/site app-routes) ; web
+  (-> app-routes stateful-route handler/site)
   ;(-> (handler/api api-routes) ; REST
   ;    (middleware/wrap-json-response)
   ;    (middleware/wrap-json-body))

@@ -5,34 +5,12 @@
             [cassiopeia.views.private :as views]
             [cassiopeia.models.private :as mprivate]))
 
-;(defn index [id]
-;  (let [user (session/session-get :user (models/user-model {:name "Kiko"}))]
-;    (do
-;      ;(session/session-put! :counter counter)
-;      (hpage/html5 [:p "Hi there: " id " end " (@user :name) " - " (@user :account)]))))
-
-(defn index
-  []
-  ; {:first_name "Janina"} is the default value from the session
-  (-> {:first_name "Janina"} (mprivate/all) (views/welcome)))
-;  ([] (let [user (session/session-get :user (models/user-model {:first_name "Janina"}))]
-;          (views/welcome user)))
-;  ([id] (let [user (session/session-get :user (models/user-model {:first_name "Janina"}))]
-;          (views/welcome user))))
-
+(defn index []
+  (-> (session/session-get :user) (mprivate/all) (views/welcome)))
 
 (defroutes controller-routes
-  (GET "/welcome/" [] (index))
-  ;(GET "/welcome/:id" [id] (index id))
-  )
-
-;; We define the routes for the meta-models 
-(defroutes controller-model-routes
-  (GET "/" [] (index "read models"))
-  (GET "/create" [] (index "create model"))
-  (GET "/edit/:id" [id] (index id))
-  (GET "/delete/:id" [id] (index id)))
+  (GET "/welcome/" [] (index)))
 
 (defroutes routes
   (context "/user" [] controller-routes)
-  (context "/model" [] controller-model-routes))
+  )

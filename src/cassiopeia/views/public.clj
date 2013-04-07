@@ -11,29 +11,11 @@
                ; slider
                [:div {:class "row"}
                 [:div {:class "large-7 columns"}
-                 (element/image "/img/sencha-touch-2-devices-400.jpg")
-                ; [:ul {:data-orbit ""}
-                ;  [:li 
-                ;   (element/image {:height "200px"} "/img/Devices.png")
-                ;   [:div {:class "orbit-caption"} "Run everywhere"]]
-                ;  [:li
-                ;   (element/image {:height "200px"} "/img/sencha-touch-2-devices-400.jpg")
-                ;   [:div {:class "orbit-caption"} 
-                ;    "Build with the latest technology. Build one, deploy anywhere"]]
-                ;  [:li
-                ;   (element/image {:height "200px"} "/img/sencha-tools-250.png")
-                ;   [:div {:class "orbit-caption"} "Proud of using Sencha Framework"]]]
-                 ]
+                 (element/image "/img/sencha-touch-2-devices-400.jpg")]
                 
                 [:div {:class "panel radius large-5 columns"} 
                  [:p "Hemos creado la aplicación perfecta para aquellos negocios que
-                  necesitan realizar inventario de forma rápida y sencilla"]]
-                ]
-               
-               ;[:div {:class "row"}
-               ; [:div {:class "panel large-12"}
-               ;  [:p "Hemos creado la aplicación perfecta para aquellos negocios que
-               ;   necesitan realizar inventario de forma rápida y sencilla"]]] 
+                  necesitan realizar inventario de forma rápida y sencilla"]]]
                
                ;Bottom Feature panels
                [:div {:class "row"}
@@ -116,6 +98,20 @@
                    ;(form/email-field "email" "johndoe@cassiopeia.com")
                    ]]]]))
 
+(def login-form
+  (form/form-to [:post "/login"]
+                (form/email-field {:placeholder "johndoe@cassiopeia.com"} "email")
+                (form/password-field {:placeholder "********"} "password")
+                (form/submit-button "Login")))
+
+(def login-form-view
+  (hpage/html5 [:div {:class "row"}
+                [:div {:class "large-10 large-offset-1"}
+                 [:h1 "Login"]
+                 [:div {:class "panel"} (element/image "/img/sencha-touch-2-devices-400.jpg")
+                  [:div {:class "large-7 panel"} 
+                   login-form]]]]))
+
 (defn index [& content]
     (apply layout/common (into (into [] content)
                                feature-description)))
@@ -126,3 +122,6 @@
 
 (defn waiting-list []
   (apply layout/common (into ["Cassiopeia - Lista de espera"] waiting-list-view)))
+
+(defn login-view []
+  (apply layout/common (into ["Login"] login-form-view)))
