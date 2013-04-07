@@ -39,12 +39,6 @@
    :qid ""
    :answers {}})
 
-;(defn item
-;  [namee text & solutions]
-;  (map :name solutions))
-
-;(item "Kiko" "Fernandez" {:name "Kiko" :lastname "Fernandez"} {:name :kiko})
-
 (defn item
   "Defines a item, which is a question and a list of valid answers"
   [{:as attributes}]

@@ -12,5 +12,4 @@
   (GET "/welcome/" [] (index)))
 
 (defroutes routes
-  (context "/user" [] controller-routes)
-  )
+  (context "/user" [] controller-routes))

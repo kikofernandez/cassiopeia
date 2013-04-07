@@ -24,10 +24,10 @@
     [:li [:a {:class "small button secondary" :href "/user/category"}"Create Category"]]
     [:li [:a {:class "small button secondary" :href "/user/questionnaire"} "Create new questionnaire"]]
     [:li [:a {:class "small button secondary" :href "/user/documents"} "My Documents"]]]
-   [:div {:class "panel"}
-    [:h3 "Latest " db/latest " questions added: "]
-    [:ul
-     (map (fn [user] [:li (:title user)]) (take-last db/latest question))]]))
+    (when (<= db/latest (count question))
+      [:div {:class "panel"}
+       [:p "Latest " db/latest " questions added: "]
+       [:ul (map (fn [user] [:li (:title user)]) (take-last db/latest question))]])))
 
 (defn welcome [question]
   (let [session-user (session/session-get :user)]
