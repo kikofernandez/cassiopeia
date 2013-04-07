@@ -13,8 +13,7 @@
         account (:account user)]
     (hpage/html5 
      [:div {:class "panel"}
-      "Welcome back " (:first_name user)
-      ", you are using a " (inverted-map account)])))
+      "Welcome back " (:first_name user) ", you are using a " (inverted-map account)])))
 
 (defn- valid-actions 
   "Display the actions that you can do now that you are a registered user"
