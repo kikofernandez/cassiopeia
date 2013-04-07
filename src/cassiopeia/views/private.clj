@@ -2,6 +2,7 @@
   (:require [cassiopeia.views.layout :as layout]
             [hiccup.page :as hpage]
             [clojure.set :as closet]
+            [cassiopeia.controllers.db :as db]
             [cassiopeia.models.private :as mprivate]))
 
 (defn- type-account-html 
@@ -22,9 +23,12 @@
     [:li [:a {:class "small button secondary" :href "/user/questionnaire"} "Create new questionnaire"]]
     [:li [:a {:class "small button secondary" :href "/user/documents"} "My Documents"]]]
    [:div {:class "panel"}
-    (mprivate/all user)]))
+    [:h3 "Latest " db/latest " questions added: "]
+    [:ul
+     ;(map #(:title %) (take db/latest user))]]
+     (map (fn [user] [:li (:title user)]) (take-last db/latest user))]]))
 
 (defn welcome [user]
-  (layout/common (str "Welcome " (:name user))
+  (layout/common (str "Welcome " (:first_name user))
                  (type-account-html user)
                  (valid-actions user)))

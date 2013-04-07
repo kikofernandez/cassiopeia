@@ -2,7 +2,8 @@
   (:use [compojure.core :only (defroutes GET POST context)])
   (:require [cassiopeia.models.private :as models]
             [sandbar.stateful-session :as session]
-            [cassiopeia.views.private :as views]))
+            [cassiopeia.views.private :as views]
+            [cassiopeia.models.private :as mprivate]))
 
 ;(defn index [id]
 ;  (let [user (session/session-get :user (models/user-model {:name "Kiko"}))]
@@ -11,15 +12,19 @@
 ;      (hpage/html5 [:p "Hi there: " id " end " (@user :name) " - " (@user :account)]))))
 
 (defn index
-  ([] (let [user (session/session-get :user (models/user-model {:first_name "User"}))]
-          (views/welcome user)))
-  ([id] (let [user (session/session-get :user (models/user-model {:first_name "User"}))]
-          (views/welcome user))))
+  []
+  ; {:first_name "Janina"} is the default value from the session
+  (-> {:first_name "Janina"} (mprivate/all) (views/welcome)))
+;  ([] (let [user (session/session-get :user (models/user-model {:first_name "Janina"}))]
+;          (views/welcome user)))
+;  ([id] (let [user (session/session-get :user (models/user-model {:first_name "Janina"}))]
+;          (views/welcome user))))
 
 
 (defroutes controller-routes
   (GET "/welcome/" [] (index))
-  (GET "/welcome/:id" [id] (index id)))
+  ;(GET "/welcome/:id" [id] (index id))
+  )
 
 ;; We define the routes for the meta-models 
 (defroutes controller-model-routes

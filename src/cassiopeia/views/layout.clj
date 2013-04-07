@@ -1,7 +1,7 @@
 (ns cassiopeia.views.layout
   (:require [hiccup.page :as hpage]
-            [monger.collection :as mc]
-            [monger.core :as mg]
+            ;[monger.collection :as mc]
+            ;[monger.core :as mg]
             [hiccup.core :as hcore]))
 
 (defn leftmenu
@@ -30,7 +30,7 @@
    [:div {:class "row"}
     [:div {:class "large-12 columns"}
      [:ul {:class "breadcrumbs"}
-      [:li [:a {:href "/home"} (map :first_name (mc/find-maps "question"))]]
+      ;[:li [:a {:href "/home"} (map :first_name (mc/find-maps "question"))]]
       [:li [:a {:href "/home"} "Home"]]
       [:li [:a {:href "/features"} "Características"]]
       [:li [:a {:href "/waiting-list"} "Invitación"]]]]]

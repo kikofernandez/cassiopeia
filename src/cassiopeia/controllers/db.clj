@@ -3,6 +3,8 @@
             ;[monger.collection :as mc]
             ))
 
+(def latest 5)
+
 (def connect
 ;  (mg/connect-via-uri! "mongodb://admin:17SkMHIsKB2k@localhost:27017/janina")
   (mg/connect-via-uri! "mongodb://admin:17SkMHIsKB2k@ds057857.mongolab.com:57857/janina"))

@@ -17,7 +17,7 @@
   "Creates a user model to be populated with information"
   [{:as attributes}]
    (merge {:name "" 
-           :first_name "" 
+           :first_name "Janina" 
            :last_name "" 
            :account (accounts :free-account)}
           attributes))
@@ -46,5 +46,7 @@
          attributes))
 
 (defn all
+  "Display all valid questions. 
+  A valid question is a question that has a title."
   [user]
-  (mc/find-maps "question" {:first_name (:first_name user)}))
+  (filter :title (mc/find-maps "question" {:first_name (:first_name user)})))
