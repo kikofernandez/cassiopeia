@@ -1,4 +1,5 @@
-(ns cassiopeia.models.private)
+(ns cassiopeia.models.private
+  (:require [monger.collection :as mc]))
 
 (def free-account 0)
 
@@ -15,14 +16,19 @@
 (defn user-model 
   "Creates a user model to be populated with information"
   [{:as attributes}]
-  (atom (merge {:name "" :account (accounts :free-account)} attributes)))
+   (merge {:name "" 
+           :first_name "" 
+           :last_name "" 
+           :account (accounts :free-account)}
+          attributes))
 
 (defn category
   "Creates a category (top-level folder)"
   [{:as attributes}]
-  (atom (merge {:name "Documents"
-                :description "Default category"
-                :tags ["documents" "default"]} attributes)))
+   (merge {:name "Documents"
+           :description "Default category"
+           :tags ["documents" "default"]} 
+          attributes))
 
 
 ;(defn item
@@ -34,8 +40,11 @@
 (defn item
   "Defines a item, which is a question and a list of valid answers"
   [{:as attributes}]
-  (atom (merge {:name "Enter a name" 
-                :description "Enter a description"
-                :answers []}
-               attributes)))
+  (merge {:name "Enter a name" 
+          :description "Enter a description"
+          :answers []}
+         attributes))
 
+(defn all
+  [user]
+  (mc/find-maps "question" {:first_name (:first_name user)}))

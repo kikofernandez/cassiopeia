@@ -11,9 +11,9 @@
 ;      (hpage/html5 [:p "Hi there: " id " end " (@user :name) " - " (@user :account)]))))
 
 (defn index
-  ([] (let [user (session/session-get :user (models/user-model {:name "Kiko"}))]
+  ([] (let [user (session/session-get :user (models/user-model {:first_name "User"}))]
           (views/welcome user)))
-  ([id] (let [user (session/session-get :user (models/user-model {:name "Kiko"}))]
+  ([id] (let [user (session/session-get :user (models/user-model {:first_name "User"}))]
           (views/welcome user))))
 
 
