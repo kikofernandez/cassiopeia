@@ -1,10 +1,14 @@
 (ns cassiopeia.views.private
   (:require [cassiopeia.views.layout :as layout]
             [hiccup.page :as hpage]
+            [hiccup.form :as form]
             [clojure.set :as closet]
             [sandbar.stateful-session :as session]
             [cassiopeia.controllers.db :as db]
+;            [cassiopeia.controllers.private :as controller]
             [cassiopeia.models.private :as mprivate]))
+
+(def title-new-questionnaire "Create new questionnaire")
 
 (defn- type-account-html 
   "Creates the header with a welcome message and the kind of account that you have"
@@ -33,3 +37,13 @@
       (layout/common (str "Welcome " (:first_name session-user))
                  (type-account-html session-user)
                  (valid-actions question))))
+
+(defn- create-questionnaire-form []
+  (hpage/html5
+;   (form/form-to [:post (str controller/user controller/questionnaire controller/new)]
+      (form/form-to [:post ""]
+                 (form/label "title" "Title"))))
+
+(defn new-questionnaire []
+  (layout/common title-new-questionnaire
+                 (create-questionnaire-form)))
