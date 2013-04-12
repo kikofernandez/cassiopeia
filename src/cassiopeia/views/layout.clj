@@ -2,7 +2,8 @@
   (:require [hiccup.page :as hpage]
             ;[monger.collection :as mc]
             ;[monger.core :as mg]
-            [hiccup.core :as hcore]))
+            [hiccup.core :as hcore]
+            [cassiopeia.controllers.urls :as urls]))
 
 (defn leftmenu
   "Defines the left menu on the welcome screen"
@@ -31,9 +32,9 @@
     [:div {:class "large-12 columns"}
      [:ul {:class "breadcrumbs"}
       ;[:li [:a {:href "/home"} (map :first_name (mc/find-maps "question"))]]
-      [:li [:a {:href "/home"} "Home"]]
-      [:li [:a {:href "/features"} "Características"]]
-      [:li [:a {:href "/waiting-list"} "Invitación"]]]]]
+      [:li [:a {:href urls/home} "Home"]]
+      [:li [:a {:href urls/features} "Características"]]
+      [:li [:a {:href urls/waitinglist} "Invitación"]]]]]
    ))
    
 
@@ -54,7 +55,8 @@
   (hpage/html5
    (hpage/include-css "/css/normalize.css"
                        "/css/foundation.min.css")
-   (hpage/include-js "/js/vendor/custom.modernizr.js")))
+   (hpage/include-js "/js/vendor/custom.modernizr.js")
+   (hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")))
 
 (defn common 
   "Creates the basic skeleton for working with Foundation Framework"

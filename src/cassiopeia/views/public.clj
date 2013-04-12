@@ -2,7 +2,8 @@
   (:require [hiccup.page :as hpage]
             [hiccup.form :as form]
             [hiccup.element :as element]
-            [cassiopeia.views.layout :as layout]))
+            [cassiopeia.views.layout :as layout]
+            [cassiopeia.controllers.urls :as urls]))
 
 (def feature-description
   (hpage/html5 [:div 
@@ -99,7 +100,7 @@
                    ]]]]))
 
 (def login-form
-  (form/form-to [:post "/login"]
+  (form/form-to [:post urls/login ]
                 (form/email-field {:placeholder "johndoe@cassiopeia.com"} "email")
                 (form/password-field {:placeholder "********"} "password")
                 (form/submit-button "Login")))

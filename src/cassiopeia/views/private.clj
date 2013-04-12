@@ -41,9 +41,25 @@
 
 (defn- create-questionnaire-form []
   (hpage/html5
-;   (form/form-to [:post (str controller/user controller/questionnaire controller/new)]
-      (form/form-to [:post ""]
-                 (form/label "title" "Title"))))
+   [:div {:ng-app ""}
+    (hpage/include-js "/js/angular/questionnaire.js")
+    [:div {:ng-controller "QuestionnaireCtrl"}
+     [:ul {:class "unstyled"}
+      [:li {:ng-repeat "question in questions"}
+       [:span "{{ question.title }}"]]]
+     (form/form-to {:ng-submit "addQuestion()"} ["" ""]
+                   (form/text-field {:placeholder "título" :ng-model "questionTitle"} "questionTitle")
+                   (form/submit-button "Añadir"))
+     (comment
+     (form/form-to [:post urls/questionnaire-new]
+                 (form/label "title" "Título")
+                 (form/text-field {:placeholder "Escribe un título"} "title")
+                 (form/label "description" "Descripción")
+                 (form/text-area {:placeholder "Descripción"} "description")
+                 (form/label "nQuestions" "Número de preguntas")
+                 (form/text-field {:placeholder "3"} "nQuestions"))
+       )
+     ]]))
 
 (defn new-questionnaire []
   (layout/common title-new-questionnaire
