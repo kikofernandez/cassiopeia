@@ -42,24 +42,24 @@
 (defn- create-questionnaire-form []
   (hpage/html5
    [:div {:ng-app ""}
+    
     (hpage/include-js "/js/angular/questionnaire.js")
     [:div {:ng-controller "QuestionnaireCtrl"}
      [:ul {:class "unstyled"}
       [:li {:ng-repeat "question in questions"}
-       [:span "{{ question.title }}"]]]
+       [:span "{{ question.title }}<br>"]
+       [:span {:ng-repeat "answer in question.answers "} 
+        "{{ answer.title}}<br>"]
+       [:div {:ng-controller "AnswerCtrl"}
+        (form/form-to {:ng-submit "addAnswer(question)"} ["" ""]
+                     (form/text-field {:placeholder "Respuesta" :ng-model "answerTitle"} "answerTitle")
+                     (form/text-field {:placeholder "Valor (opcional)" :ng-model "answerValue"} "answerValue")
+                     (form/submit-button "Añadir Respuesta"))]
+       ]]
      (form/form-to {:ng-submit "addQuestion()"} ["" ""]
                    (form/text-field {:placeholder "título" :ng-model "questionTitle"} "questionTitle")
-                   (form/submit-button "Añadir"))
-     (comment
-     (form/form-to [:post urls/questionnaire-new]
-                 (form/label "title" "Título")
-                 (form/text-field {:placeholder "Escribe un título"} "title")
-                 (form/label "description" "Descripción")
-                 (form/text-area {:placeholder "Descripción"} "description")
-                 (form/label "nQuestions" "Número de preguntas")
-                 (form/text-field {:placeholder "3"} "nQuestions"))
-       )
-     ]]))
+                   (form/submit-button "Añadir"))]
+    ]))
 
 (defn new-questionnaire []
   (layout/common title-new-questionnaire
