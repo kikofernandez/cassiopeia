@@ -5,6 +5,7 @@
             [clojure.set :as closet]
             [sandbar.stateful-session :as session]
             [cassiopeia.controllers.db :as db]
+            [cassiopeia.controllers.urls :as urls]
 ;            [cassiopeia.controllers.private :as controller]
             [cassiopeia.models.private :as mprivate]))
 
@@ -24,9 +25,9 @@
   [question]
   (hpage/html5 
    [:ul {:class "button-group"}
-    [:li [:a {:class "small button secondary" :href "/user/category"}"Create Category"]]
-    [:li [:a {:class "small button secondary" :href "/user/questionnaire"} "Create new questionnaire"]]
-    [:li [:a {:class "small button secondary" :href "/user/documents"} "My Documents"]]]
+    [:li [:a {:class "small button secondary" :href urls/user-category}"Create Category"]]
+    [:li [:a {:class "small button secondary" :href urls/user-questionnaire} "Create new questionnaire"]]
+    [:li [:a {:class "small button secondary" :href urls/user-documents} "My Documents"]]]
     (when (<= db/latest (count question))
       [:div {:class "panel"}
        [:p "Latest " db/latest " questions added: "]

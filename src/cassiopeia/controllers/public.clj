@@ -5,6 +5,7 @@
             [cassiopeia.models.public :as mpublic]
             [ring.util.response :as response]
             [sandbar.stateful-session :as session]
+            [cassiopeia.controllers.urls :as urls]
             ))
 
 (defn- index 
@@ -39,12 +40,12 @@
   [{:keys [email password]}]
   (when-let [user (first (db/login-user email password))]
     (session/session-put! :user user)
-    (response/redirect "/user/welcome/")))
+    (response/redirect urls/user-welcome)))
 
 (defroutes routes
   (GET "/" [] (index))
-  (GET "/home" [] (index))
-  (GET "/login" [] (login))
-  (POST "/login" [& params] (login-validate params))
-  (GET "/features" [] (features))
-  (GET "/waiting-list" [] (waiting-list)))
+  (GET urls/home [] (index))
+  (GET urls/login [] (login))
+  (POST urls/login [& params] (login-validate params))
+  (GET urls/features [] (features))
+  (GET urls/waitinglist [] (waiting-list)))
