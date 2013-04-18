@@ -1,0 +1,11 @@
+<form name="question">
+  <label>Título: </label>
+  <input type="text" name="titulo" ng-model="question.title">
+  
+  <label>Respuestas: </label>
+  <div ng-repeat="answer in answers">
+    <input type="text" value="{{answer.title}}">
+  </div>
+  <a href="#/addAnswer">Nueva respuesta</a>
+  
+</form>

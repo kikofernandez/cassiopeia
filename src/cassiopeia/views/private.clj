@@ -41,24 +41,29 @@
 
 (defn- create-questionnaire-form []
   (hpage/html5
-   [:div {:ng-app ""}
-    
+   [:div {:ng-app "project"}
+    (hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
+    (hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js")
     (hpage/include-js "/js/angular/questionnaire.js")
-    [:div {:ng-controller "QuestionnaireCtrl"}
-     [:ul {:class "unstyled"}
-      [:li {:ng-repeat "question in questions"}
-       [:span "{{ question.title }}<br>"]
-       [:span {:ng-repeat "answer in question.answers "} 
-        "{{ answer.title}}<br>"]
-       [:div {:ng-controller "AnswerCtrl"}
-        (form/form-to {:ng-submit "addAnswer(question)"} ["" ""]
-                     (form/text-field {:placeholder "Respuesta" :ng-model "answerTitle"} "answerTitle")
-                     (form/text-field {:placeholder "Valor (opcional)" :ng-model "answerValue"} "answerValue")
-                     (form/submit-button "Añadir Respuesta"))]
-       ]]
-     (form/form-to {:ng-submit "addQuestion()"} ["" ""]
-                   (form/text-field {:placeholder "título" :ng-model "questionTitle"} "questionTitle")
-                   (form/submit-button "Añadir"))]
+    [:div {:ng-view ""}]
+    (comment
+      [:div {:ng-controller "QuestionnaireCtrl"}
+       [:ul {:class "unstyled"}
+        [:li {:ng-repeat "question in questions"}
+         [:span "{{ question.title }}<br>"]
+         [:span {:ng-repeat "answer in question.answers "} 
+          "{{ answer.title}}<br>"]
+         [:div {:ng-controller "AnswerCtrl"}
+          (form/form-to {:ng-submit "addAnswer(question)"} ["" ""]
+                       (form/text-field {:placeholder "Respuesta" :ng-model "answerTitle"} "answerTitle")
+                       (form/text-field {:placeholder "Valor (opcional)" :ng-model "answerValue"} "answerValue")
+                       (form/submit-button "Añadir Respuesta"))]
+         ]]
+       (form/form-to {:ng-submit "addQuestion()"} ["" ""]
+                     (form/text-field {:placeholder "título" :ng-model "questionTitle"} "questionTitle")
+                     (form/submit-button "Añadir"))
+       (form/form-to [:post (str urls/user urls/questionnaire-new)]
+                     (form/submit-button "Send"))])
     ]))
 
 (defn new-questionnaire []

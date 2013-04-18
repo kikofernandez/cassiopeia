@@ -12,9 +12,13 @@
 (defn- create-questionnaire []
   (views/new-questionnaire))
 
+(defn- display-list [params]
+  (str params))
+
 (defroutes controller-routes
   (GET urls/welcome [] (index))
-  (GET urls/questionnaire-new [] (create-questionnaire)))
+  (GET urls/questionnaire-new [] (create-questionnaire))
+  (POST urls/questionnaire-new [& params] (display-list params)))
 
 (defroutes routes
   (context "/user" [] controller-routes))
