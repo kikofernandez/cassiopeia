@@ -3,13 +3,13 @@ angular.module('project', []).
     $routeProvider.
       when('/', {controller:QuestionCtrl, templateUrl:'/html/questionnaires/list.html'}).
       when('/new', {controller:CreateQuestionCtrl, templateUrl:'/html/questionnaires/list.html'});
-      when('/addAnswer', {controller:CreateQuestionCtrl, templateUrl:'/html/questionnaires/list.html'});
+      //when('/addAnswer', {controller:CreateQuestionCtrl, templateUrl:'/html/questionnaires/list.html'});
   });
 
 function QuestionCtrl($scope){
   $scope.questions = [
-    {title:'Do you like your job?'},
-    {title:'Do you like your job?'},
+    {title:'Do you like your job?', answers: [{title: 'Yes'}, {title: 'No'}]},
+    {title:'Do you drink alcohol?', answers: [{title: 'Yes'}, {title: 'No'}]},
   ];
     
   $scope.addQuestion = function(){
