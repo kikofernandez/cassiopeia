@@ -1,25 +1,61 @@
-angular.module('project', []).
+angular.module('project', ['questionnaireService']).
   config(function($routeProvider) {
     $routeProvider.
       when('/', {controller:QuestionCtrl, templateUrl:'/html/questionnaires/list.html'}).
-      when('/new', {controller:CreateQuestionCtrl, templateUrl:'/html/questionnaires/list.html'});
+      when('/new', {controller:EditCtrl, templateUrl:'/html/questionnaires/detail.html'});
+      //when('/new', {controller:CreateQuestionCtrl, templateUrl:'/html/questionnaires/list.html'});
       //when('/addAnswer', {controller:CreateQuestionCtrl, templateUrl:'/html/questionnaires/list.html'});
   });
 
-function QuestionCtrl($scope){
+function QuestionCtrl($scope, QuestionnaireDI){
   $scope.questions = [
-    {title:'Do you like your job?', answers: [{title: 'Yes'}, {title: 'No'}]},
-    {title:'Do you drink alcohol?', answers: [{title: 'Yes'}, {title: 'No'}]},
+    {id: 1, title:'Do you like your job?', answers: [{title: 'Yes'}, {title: 'No'}]},
+    {id: 2, title:'Do you drink alcohol?', answers: [{title: 'Yes'}, {title: 'No'}]},
   ];
-    
+
+  $scope.questions = QuestionnaireDI.query();
+
+  /*  
   $scope.addQuestion = function(){
     $scope.questions.push({title:$scope.questionTitle, answers:[]});
     $scope.questionTitle = '';
   }
+  */
 }
 
-function CreateQuestionCtrl($scope){
+function EditCtrl($scope, $location, QuestionnaireDI){
   
+  $scope.answer = '';
+  $scope.answers = [];
+  $scope.question = {
+    title: '',
+    description: ''
+  };
+  
+
+  //$scope.init();
+
+  $scope.init = function(){
+    $scope.answer = '';
+    $scope.answers = [];
+    $scope.question = {
+      title: '',
+      description: ''
+    };
+  }
+
+  $scope.createAnswer = function(){
+    $scope.answers.push({ title: $scope.answer});
+    $scope.answer = '';
+  }
+
+
+
+  $scope.saveAnswer = function(){
+    QuestionnaireDI.saveQuestionnaire($scope.question.title, $scope.answers);
+    $location.path('/');
+    $scope.init();
+  }
 }
 
 

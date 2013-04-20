@@ -45,6 +45,7 @@
     (hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
     (hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js")
     (hpage/include-js "/js/angular/questionnaire.js")
+    (hpage/include-js "/js/angular/questionnaireService.js")
     [:div {:ng-view ""}]
     (comment
       [:div {:ng-controller "QuestionnaireCtrl"}
