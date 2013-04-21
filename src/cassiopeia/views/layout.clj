@@ -54,8 +54,12 @@
   []
   (hpage/html5
    (hpage/include-css "/css/normalize.css"
-                       "/css/foundation.min.css")
-   (hpage/include-js "/js/vendor/custom.modernizr.js")
+                       "/css/foundation.min.css"
+                       ;"/css/bootstrap.min.css"
+                       )
+   (hpage/include-js "/js/vendor/custom.modernizr.js"
+                      ;"/js/bootstrap.min.js"
+                      )
    (hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")))
 
 (defn common 
@@ -73,7 +77,10 @@
     ;; Foundation framework initialization
     (hpage/include-js "/js/init.js")
     (hpage/include-js "/js/foundation.min.js")
-    (hpage/include-js "/js/load-plugins.js")
+    (hpage/include-js "/js/load-plugins.js"
+                      ;"/js/foundation/foundation.dropdown.js"
+                      )
+
     ]))
 
 

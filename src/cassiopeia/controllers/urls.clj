@@ -14,9 +14,11 @@
 (def login "/login")
 (def features "/features")
 (def waitinglist "/waiting-list")
+(def save "/save")
 
 ;; These are compositions
 (def questionnaire-new (str questionnaire new))
+(def questionnaire-save (str questionnaire save))
 (def user-welcome (str user welcome))
 (def user-category (str user category))
 (def user-questionnaire (str user questionnaire))

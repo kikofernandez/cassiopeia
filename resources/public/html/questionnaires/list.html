@@ -1,6 +1,10 @@
+<!--
+<script src="/js/foundation/foundation.dropdown.js" >
+-->
 <ul class="unstyled">
   <li ng-repeat="question in questions">
     <span>{{ question.title }}</span>
+        
     <ul ng-repeat="answer in question.answers">
       {{ answer.title }}
     </ul>
@@ -8,3 +12,15 @@
 </ul>
 <a href="#/new">Añadir pregunta</a>
 <a ng-click="saveQuestionnaire()">Guardar</a>
+
+<!--
+<ul id="dropdown" class="f-dropdown">
+  <li><a href="#">This is a link</a></li>
+  <li><a href="#">This is another</a></li>
+  <li><a href="#">Yet another</a></li>
+</ul>
+
+
+<a href="#" data-dropdown="dropdown" class="tiny button dropdown">Acción</a>
+-->
+

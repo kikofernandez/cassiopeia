@@ -19,8 +19,8 @@ angular.module('questionnaireService', ['ngResource']).
 
     handler.sendQuestionnaire = function(){
       $http.post("/user/questionnaire/save", questions)
-        .success(function(){ $window.location.href('/login'); })
-        .error(function(){ $window.location.href = '/login'; });
+        .success(function(){ console.log('success'); $window.location.href = '/user/questionnaire/save'; })
+        .error(function(){ console.log('failure'); $window.location.href = '/user/questionnaire/save'; });
     };
 
     handler.getQuestionnaire = function(){

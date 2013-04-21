@@ -8,23 +8,12 @@ angular.module('project', ['questionnaireService']).
   });
 
 function QuestionCtrl($scope, QuestionnaireDI){
-  $scope.questions = [
-    {id: 1, title:'Do you like your job?', answers: [{title: 'Yes'}, {title: 'No'}]},
-    {id: 2, title:'Do you drink alcohol?', answers: [{title: 'Yes'}, {title: 'No'}]},
-  ];
-
   $scope.questions = QuestionnaireDI.query();
 
   $scope.saveQuestionnaire = function(){
     console.log('Did you call me?');
     QuestionnaireDI.sendQuestionnaire();
   }
-  /*  
-  $scope.addQuestion = function(){
-    $scope.questions.push({title:$scope.questionTitle, answers:[]});
-    $scope.questionTitle = '';
-  }
-  */
 }
 
 function EditCtrl($scope, $location, QuestionnaireDI){

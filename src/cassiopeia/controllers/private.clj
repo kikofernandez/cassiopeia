@@ -12,12 +12,16 @@
 (defn- create-questionnaire []
   (views/new-questionnaire))
 
-(defn- display-list [params]
-  (str params))
+(defn- display-list 
+  ([] (str (session/session-get :user)))
+  ([params]
+  (str (session/session-get :user) params)))
 
 (defroutes controller-routes
   (GET urls/welcome [] (index))
   (GET urls/questionnaire-new [] (create-questionnaire))
+  (GET urls/questionnaire-save [] (display-list))
+  (POST urls/questionnaire-save [& params] (display-list params))
   (POST urls/questionnaire-new [& params] (display-list params)))
 
 (defroutes routes
