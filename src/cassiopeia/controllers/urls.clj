@@ -22,4 +22,6 @@
 (def user-welcome (str user welcome))
 (def user-category (str user category))
 (def user-questionnaire (str user questionnaire))
+(def user-questionnaire-new (str user-questionnaire new))
+(def user-questionnaire-save (str user-questionnaire save))
 (def user-documents (str user documents))

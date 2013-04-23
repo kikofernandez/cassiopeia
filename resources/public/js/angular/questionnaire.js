@@ -11,7 +11,6 @@ function QuestionCtrl($scope, QuestionnaireDI){
   $scope.questions = QuestionnaireDI.query();
 
   $scope.saveQuestionnaire = function(){
-    console.log('Did you call me?');
     QuestionnaireDI.sendQuestionnaire();
   }
 }

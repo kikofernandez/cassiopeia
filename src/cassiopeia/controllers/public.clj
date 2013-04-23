@@ -46,6 +46,6 @@
   (GET "/" [] (index))
   (GET urls/home [] (index))
   (GET urls/login [] (login))
-  (POST urls/login [& params] (login-validate params))
+  (POST urls/login [& params] (println params)(login-validate params))
   (GET urls/features [] (features))
   (GET urls/waitinglist [] (waiting-list)))

@@ -25,9 +25,9 @@
   [question]
   (hpage/html5 
    [:ul {:class "button-group"}
-    [:li [:a {:class "small button secondary" :href urls/user-category}"Create Category"]]
-    [:li [:a {:class "small button secondary" :href urls/user-questionnaire} "Create new questionnaire"]]
-    [:li [:a {:class "small button secondary" :href urls/user-documents} "My Documents"]]]
+    [:li [:a {:class "small button secondary" :href urls/user-category}"Crear Categoría"]]
+    [:li [:a {:class "small button secondary" :href urls/user-questionnaire-new} "Crear nuevo cuestionario"]]
+    [:li [:a {:class "small button secondary" :href urls/user-documents} "Mis Documentos"]]]
     (when (<= db/latest (count question))
       [:div {:class "panel"}
        [:p "Latest " db/latest " questions added: "]
