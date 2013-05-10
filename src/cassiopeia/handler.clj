@@ -15,32 +15,29 @@
   "Calls the routeFn adding stateful session."
   [routeFn]
    (-> routeFn
-      session/wrap-stateful-session 
+      session/wrap-stateful-session
       params/wrap-params))
+
+(defn- site-stateful
+  [route]
+  (handler/site (stateful-route route)))
 
 ;; Application routes, just simple website
 (defroutes app-routes
-  public/routes
-  private/routes
+  ;(handler/site (stateful-route public/routes))
+  ;(handler/site (stateful-route private/routes))
+  (site-stateful public/routes)
+  (site-stateful private/routes)
   ;(stateful-route public/routes)
   ;(stateful-route private/routes) ; stateful route, we have an user.
+  (handler/site (POST "/api/user/questionnaire/save" [] (str "First step for a working API")))
   (route/resources "/")
   (route/not-found "Not Found"))
 
-;; REST routes
-;(defroutes api-routes
-  ;(context "/api/" [] rs/routes)
-  ;(route/not-found "Not Found")
-  ;(context "/api" [] (defroutes documents
-  ;                      (GET "/" [] ("jajaja"))))
-;  )
-
 (def app
-;  (handler/api api-routes))
-  ;(handler/site app-routes) ; web
-  (-> app-routes stateful-route handler/site)
+  app-routes
+;  (-> app-routes stateful-route handler/site)
   ;(-> (handler/api api-routes) ; REST
   ;    (middleware/wrap-json-response)
   ;    (middleware/wrap-json-body))
       )
-  
