@@ -20,7 +20,7 @@ angular.module('questionnaireService', ['ngResource']).
     handler.sendQuestionnaire = function(){
       $http.post("/api/user/questionnaire/save", questions)
         .success(function(){ console.log('success'); /*$window.location.href = '/user/questionnaire/save';*/ })
-        .error(function(){ console.log('failure'); /*$window.location.href = '/user/questionnaire/save';*/ });
+        .error(function(){ console.log('failure'); alert('No pudimos guardar su respuesta, inténtelo de nuevo.'); });
     };
 
     handler.getQuestionnaire = function(){
