@@ -10,7 +10,6 @@
             [cassiopeia.controllers.private :as private]
             [cassiopeia.controllers.rest :as rs]
             [sandbar.stateful-session :as session]
-            ;[cheshire.core :as json]
             ))
 
 (defn- stateful-route
@@ -20,19 +19,20 @@
       session/wrap-stateful-session
       params/wrap-params))
 
-(defn- site-stateful
-  [route]
-  (handler/site (stateful-route route)))
-
-;; Application routes, just simple website
 (defroutes app-routes
-  (site-stateful public/routes)
-  (site-stateful private/routes)
+  ; public website
+  (handler/site public/routes)
+
+  ; users and web app
+  (handler/site private/routes)
+
+  ; REST-API using sessions
   (-> (handler/api rs/routes)
-      (middleware/wrap-json-response)
-      (middleware/wrap-json-body))
+        (middleware/wrap-json-response)
+        (middleware/wrap-json-body))
   (route/resources "/")
   (route/not-found "Not Found"))
 
 (def app
-  app-routes)
+  ; We use the same sessions accross the whole app
+  (-> app-routes stateful-route))

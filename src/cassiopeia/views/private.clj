@@ -11,22 +11,22 @@
 
 (def title-new-questionnaire "Create new questionnaire")
 
-(defn- type-account-html 
+(defn- type-account-html
   "Creates the header with a welcome message and the kind of account that you have"
   [user]
   (let [inverted-map (closet/map-invert mprivate/accounts)
         account (:account user)]
-    (hpage/html5 
+    (hpage/html5
      [:div {:class "panel"}
       "Welcome back " (:first_name user) ", you are using a " (inverted-map account)])))
 
-(defn- valid-actions 
+(defn- valid-actions
   "Display the actions that you can do now that you are a registered user"
   [question]
-  (hpage/html5 
+  (hpage/html5
    [:ul {:class "button-group"}
     [:li [:a {:class "small button secondary" :href urls/user-category}"Create Category"]]
-    [:li [:a {:class "small button secondary" :href urls/user-questionnaire} "Create new questionnaire"]]
+    [:li [:a {:class "small button secondary" :href urls/user-questionnaire-new} "Create new questionnaire"]]
     [:li [:a {:class "small button secondary" :href urls/user-documents} "My Documents"]]]
     (when (<= db/latest (count question))
       [:div {:class "panel"}
@@ -52,7 +52,7 @@
        [:ul {:class "unstyled"}
         [:li {:ng-repeat "question in questions"}
          [:span "{{ question.title }}<br>"]
-         [:span {:ng-repeat "answer in question.answers "} 
+         [:span {:ng-repeat "answer in question.answers "}
           "{{ answer.title}}<br>"]
          [:div {:ng-controller "AnswerCtrl"}
           (form/form-to {:ng-submit "addAnswer(question)"} ["" ""]

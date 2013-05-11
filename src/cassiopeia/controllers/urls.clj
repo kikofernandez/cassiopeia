@@ -23,3 +23,4 @@
 (def user-category (str user category))
 (def user-questionnaire (str user questionnaire))
 (def user-documents (str user documents))
+(def user-questionnaire-new (str user-questionnaire new))
