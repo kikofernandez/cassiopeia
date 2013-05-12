@@ -49,16 +49,7 @@
     :last_name (:last_name user)
     :title ((questionnaire index) "title")
     :answers (-> ((questionnaire index) "answers")
-                 (answers-mapping))})
-;  ([{:keys [user questionnaire]}]
-;   {:first_name (:first_name user)
-;    :last_name (:last_name user)
-;    :title ((questionnaire index) "title")
-;    :answers (map (fn [question]
-;                    {:title (question :title)
-;                     :answers (answers-mapping (question :answers))})
-;                  questionnaire)})
-  )
+                 (answers-mapping))}))
 
 (defn save-question
   [data]
