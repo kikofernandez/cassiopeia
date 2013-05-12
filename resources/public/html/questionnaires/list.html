@@ -2,10 +2,12 @@
 <script src="/js/foundation/foundation.dropdown.js" >
 -->
 <ul class="unstyled">
-  <li ng-repeat="question in questions">
+  <input type="text" placeholder="Título del cuestionario" ng-model="container.title"/>
+  <textarea placeholder="Descripción del cuestionario" ng-model="container.description"></textarea>
+  <li ng-repeat="question in container.questions">
     <span>{{ question.title }}</span>
-        
-    <ul ng-repeat="answer in question.answers">
+
+    <ul ng-repeat="answer in container.question.answers">
       {{ answer.title }}
     </ul>
   </li>

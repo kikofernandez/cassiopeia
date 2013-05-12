@@ -1,9 +1,9 @@
 <form name="question">
   <label>Título: </label>
   <input type="text" name="titulo" ng-model="question.title">
-  
+
   <label>Respuestas: </label>
-  
+
   <ul ng-repeat="answer in answers" ng-model="answers">
     <li>{{answer.title}}</li>
   </ul>
@@ -11,5 +11,5 @@
   <input type="text" name="answer" ng-model="answer">
   <button ng-click="createAnswer()">Añadir respuesta</button>
   <button ng-click="saveAnswer()">Guardar</button>
-  
+
 </form>

@@ -8,7 +8,7 @@ angular.module('project', ['questionnaireService']).
   });
 
 function QuestionCtrl($scope, QuestionnaireDI){
-  $scope.questions = QuestionnaireDI.query();
+  $scope.container = QuestionnaireDI.query();
 
   $scope.saveQuestionnaire = function(){
     QuestionnaireDI.sendQuestionnaire();
@@ -37,8 +37,6 @@ function EditCtrl($scope, $location, QuestionnaireDI){
     $scope.answers.push({ title: $scope.answer});
     $scope.answer = '';
   }
-
-
 
   $scope.saveAnswer = function(){
     QuestionnaireDI.saveQuestionnaire($scope.question.title, $scope.answers);

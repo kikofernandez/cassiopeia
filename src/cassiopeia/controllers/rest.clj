@@ -7,18 +7,13 @@
             [cassiopeia.models.private :as model]))
 
 (defn- save-questionnaire
-  [{:keys [user questionnaire] :as data}]
-  (doseq [i (range (count questionnaire))]
-    (-> (model/question i data)
-        (model/save-question))
-    )
-  ;(model/question data)
-;  (map (model/question) )
-  ;(model/save-question {:first_name (:first_name user)
-  ;                      :last_name (:last_name user)
-  ;                      :title ("xxx")
-  ;                      })
-  )
+  [{:keys [user container] :as data}]
+  (let [questionnaire (container "questions")
+        infodata {:user user
+                  :questionnaire questionnaire}]
+    (doseq [i (range (count questionnaire))]
+      (-> (model/question i infodata)
+          (model/save-question)))))
 
 
 (defroutes routes
@@ -27,12 +22,12 @@
   (compoj/POST "/api/user/questionnaire/save" {body :body}
                ; how to read json receiving:
                ; [{id 1, title "Jaja"} {id 2, title "Jojo"} ...]
-               (println ((first body) "title"))
+               ;(println ((first body) "title"))
                (println (session/session-get :user))
-               ;(println {:user (session/session-get :user nil),
-               ;                     :questionnaire body})
-               (save-questionnaire {:user (session/session-get :user nil),
+               (println {:user (session/session-get :user nil),
                                     :questionnaire body})
+               (save-questionnaire {:user (session/session-get :user nil),
+                                    :container body})
 
                ; using Cheshire to map the received json into a dict {:id 1}
                ;(println ((json/parse-string (json/generate-string (first body)) true) :title))
