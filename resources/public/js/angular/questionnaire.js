@@ -3,12 +3,11 @@ angular.module('project', ['questionnaireService']).
     $routeProvider.
       when('/', {controller:QuestionCtrl, templateUrl:'/html/questionnaires/list.html'}).
       when('/new', {controller:EditCtrl, templateUrl:'/html/questionnaires/detail.html'});
-      //when('/new', {controller:CreateQuestionCtrl, templateUrl:'/html/questionnaires/list.html'});
-      //when('/addAnswer', {controller:CreateQuestionCtrl, templateUrl:'/html/questionnaires/list.html'});
   });
 
 function QuestionCtrl($scope, QuestionnaireDI){
   $scope.container = QuestionnaireDI.query();
+  console.log('Executed QuestionCtrl');
 
   $scope.saveQuestionnaire = function(){
     QuestionnaireDI.sendQuestionnaire();

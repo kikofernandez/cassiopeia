@@ -47,7 +47,7 @@
 (defn- create-questionnaire-form []
   (hpage/html5
    [:div {:ng-app "project"}
-    (hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
+    ;(hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")
     (hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular-resource.min.js")
     (hpage/include-js "/js/angular/questionnaire.js")
     (hpage/include-js "/js/angular/questionnaireService.js")
