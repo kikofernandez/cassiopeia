@@ -9,8 +9,10 @@
 (defn- save-questionnaire
   [{:keys [user questionnaire] :as data}]
   (doseq [i (range (count questionnaire))]
-    (println (model/question i data))
+    (-> (model/question i data)
+        (model/save-question))
     )
+  ;(model/question data)
 ;  (map (model/question) )
   ;(model/save-question {:first_name (:first_name user)
   ;                      :last_name (:last_name user)

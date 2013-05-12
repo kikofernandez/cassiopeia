@@ -1,5 +1,7 @@
 (ns cassiopeia.models.private
-  (:require [monger.collection :as mc]))
+  (:require [monger.collection :as mc]
+            [monger.core :as mg]
+            [cassiopeia.controllers.db :as db]))
 
 (def free-account 0)
 
@@ -47,11 +49,20 @@
     :last_name (:last_name user)
     :title ((questionnaire index) "title")
     :answers (-> ((questionnaire index) "answers")
-                 (answers-mapping))}))
-;    :answers ((questionnaire index) "answers")}))
+                 (answers-mapping))})
+;  ([{:keys [user questionnaire]}]
+;   {:first_name (:first_name user)
+;    :last_name (:last_name user)
+;    :title ((questionnaire index) "title")
+;    :answers (map (fn [question]
+;                    {:title (question :title)
+;                     :answers (answers-mapping (question :answers))})
+;                  questionnaire)})
+  )
 
 (defn save-question
   [data]
+  db/connect
   (mc/insert "question" data))
 
 
