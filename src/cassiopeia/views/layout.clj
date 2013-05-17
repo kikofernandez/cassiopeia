@@ -8,7 +8,7 @@
 (defn leftmenu
   "Defines the left menu on the welcome screen"
   []
-  (hpage/html5 
+  (hpage/html5
    [:div {:class "section-container accordion" :data-section ""}
     [:section {:class "section"}
      [:p {:class "title"}
@@ -36,7 +36,7 @@
       [:li [:a {:href urls/features} "Características"]]
       [:li [:a {:href urls/waitinglist} "Invitación"]]]]]
    ))
-   
+
 
 
 (defn container
@@ -53,6 +53,9 @@
   "Adds the Foundation Framework dependencies"
   []
   (hpage/html5
+   [:script {:type "text/javascript" :src "http://platform.linkedin.com/in.js"}
+   "api_key : yno7obol2xvc
+    authorize: true"]
    (hpage/include-css "/css/normalize.css"
                        "/css/foundation.min.css"
                        ;"/css/bootstrap.min.css"
@@ -62,7 +65,7 @@
                       )
    (hpage/include-js "https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js")))
 
-(defn common 
+(defn common
   "Creates the basic skeleton for working with Foundation Framework"
   [title & content]
   (hpage/html5

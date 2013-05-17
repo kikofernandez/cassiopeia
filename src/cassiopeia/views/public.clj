@@ -6,41 +6,41 @@
             [cassiopeia.controllers.urls :as urls]))
 
 (def feature-description
-  (hpage/html5 [:div 
+  (hpage/html5 [:div
                 [:h1 "We enlighten your business"]]
 
                ; slider
                [:div {:class "row"}
                 [:div {:class "large-7 columns"}
                  (element/image "/img/sencha-touch-2-devices-400.jpg")]
-                
-                [:div {:class "panel radius large-5 columns"} 
+
+                [:div {:class "panel radius large-5 columns"}
                  [:p "Hemos creado la aplicación perfecta para aquellos negocios que
                   necesitan realizar inventario de forma rápida y sencilla"]]]
-               
+
                ;Bottom Feature panels
                [:div {:class "row"}
                 [:div {:class "large-4 columns"}
                  [:div {:class "panel"}
                   [:p "Construido usando las últimas tecnologías y frameworks"]
                  (element/image {:height "100px"} "/img/technology.png")]]
-                
-                [:div {:class "large-4 columns"} 
+
+                [:div {:class "large-4 columns"}
                  [:div {:class "panel"}
                    [:p "Funciona en la nube, con modo offline y sincroniza cuando quieras"]
                    (element/image {:height "100px"} "/img/small-cloud.png")]]
-                
-                [:div {:class "large-4 columns"} 
+
+                [:div {:class "large-4 columns"}
                  [:div {:class "panel"}
                    [:p "Para ofrecerle una mayor flexibilidad utilizamos base de datos NoSQL"]
                    (element/image {:height "100px"} "/img/mongodb.jpg")]]]))
 
 (def feature-showcase
   (hpage/html5 [:div {:class "row"}
-                [:div {:class "large-11 large-offset-1"} 
+                [:div {:class "large-11 large-offset-1"}
                  [:h1 "Características"]
                  [:div {:class "large-11 columns"}
-                  
+
                   ;; First feature
                   [:div {:class "row"}
                    [:div {:class "large-8 columns"}
@@ -52,7 +52,7 @@
                    Android y iOs."]]
                    [:div {:class "large-5 columns"}
                     (element/image "/img/Devices.png")]]
-                  
+
                   ;; Second feature
                   [:div {:class "row"}
                    [:div {:class "large-5 columns"}
@@ -62,9 +62,9 @@
                     [:h3 "We love the cloud"]
                     [:p "Cassiopeia funciona en la nube, de manera que siempre tendrá
                      a su disposición los datos sin necesidad de emplear complicadas instalaciones.
-                     Los datos son privados y le pertenecen a usted, nosotros sólo nos 
+                     Los datos son privados y le pertenecen a usted, nosotros sólo nos
                      encargamos de custodiarlos."]]]
-                  
+
                   ;; Third feature
                   [:div {:class "row"}
                    [:div {:class "large-7 columns"}
@@ -74,7 +74,7 @@
                       juego de niños."]]
                    [:div {:class "large-5 columns"}
                     (element/image "/img/online_to_offline_connection.png")]]
-                  
+
                   ;; Fourth feature
                   [:div {:class "row"}
                    [:div {:class "large-5 columns"}
@@ -92,26 +92,30 @@
                 [:div {:class "large-10 large-offset-1"}
                  [:h1 "Lista de espera"]
                  [:div {:class "panel"} (element/image "/img/sencha-touch-2-devices-400.jpg")
-                  [:div {:class "large-7 panel"} 
+                  [:div {:class "large-7 panel"}
                    (form/label "email-label" "Pide tú invitación aquí:")
                    [:input {:type "email" :name "email-invitation"
                             :placeholder "johndoe@cassiopeia.com"}]
                    ;(form/email-field "email" "johndoe@cassiopeia.com")
                    ]]]]))
 
-(def login-form
-  (form/form-to [:post urls/login ]
+(defn login-form []
+  [:div
+
+   (form/form-to [:post urls/login ]
                 (form/email-field {:placeholder "johndoe@cassiopeia.com"} "email")
                 (form/password-field {:placeholder "********"} "password")
-                (form/submit-button "Login")))
+                (form/submit-button "Login"))
+  [:script {:type "in/Login"}
+   "Hello <?js= firstName ?> <?js= lastName ?>"]])
 
 (def login-form-view
   (hpage/html5 [:div {:class "row"}
                 [:div {:class "large-10 large-offset-1"}
                  [:h1 "Login"]
                  [:div {:class "panel"} (element/image "/img/sencha-touch-2-devices-400.jpg")
-                  [:div {:class "large-7 panel"} 
-                   login-form]]]]))
+                  [:div {:class "large-7 panel"}
+                   (login-form)]]]]))
 
 (defn index [& content]
     (apply layout/common (into (into [] content)
